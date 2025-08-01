@@ -1,0 +1,5 @@
+1. bisa melihat detail anggota
+    di struktur organisasi, user bisa klik anggota dan web akan merespon detail dari anggota tersebut
+
+2. Gallery
+    berisi foto-foto kegiatan adcom

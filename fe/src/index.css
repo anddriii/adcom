@@ -1,1 +1,86 @@
 @import "tailwindcss";
+
+/* src/index.css */
+html {
+  scroll-behavior: smooth;
+}
+
+.mastering-section {
+  background-color: white;
+  padding: 4rem 0;
+}
+
+.mastering-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mastering-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 3rem;
+}
+
+.scroll-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, white 10%, white 90%, transparent);
+}
+
+.scroll-row {
+  display: flex;
+  width: max-content;
+  gap: 1.5rem;
+  margin: 1rem 0;
+}
+
+.scroll-right {
+  animation: moveRight 20s linear infinite;
+}
+
+.scroll-left {
+  animation: moveLeft 20s linear infinite;
+}
+
+@keyframes moveRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes moveLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.tool-card {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 12rem;
+  flex-shrink: 0;
+}
+
+.tool-icon {
+  height: 2rem;
+  width: 2rem;
+}
+
+.tool-name {
+  font-weight: 600;
+  color: #374151; /* Tailwind gray-700 */
+}

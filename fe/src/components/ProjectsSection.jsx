@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProjectCard from './ProjectCard';
 import Pagination from './Pagination';
-import { fetchProjects } from '../api/mockApi'; // Kita masih pakai mock
+import { fetchProjects } from '../api/mockApi'; 
 
 const PROJECTS_PER_PAGE = 3; // Tentukan berapa proyek per halaman
 
@@ -14,8 +14,13 @@ const ProjectsSection = () => {
   useEffect(() => {
     const loadProjectsData = async () => {
       try {
+         // --- KODE UNTUK API ASLI (DIKOMENTARI DULU) ---
+        // const response = await fetch('http://localhost:8080/api/v1/posts');
+        // if (!response.ok) throw new Error('Gagal mengambil data project');
+        // const result = await response.json();
+        // setAllPosts(result.data);
         const result = await fetchProjects();
-        setAllProjects(result.data); // Simpan SEMUA proyek
+        setAllProjects(result.data); 
       } catch (err) {
         console.error("Gagal fetch proyek:", err);
         setError(err.message);
@@ -41,7 +46,7 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section className="bg-gray-50 py-20">
+    <section className="bg-gray-50 py-20" id='projects'>
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-800">Project Portofolio</h2>

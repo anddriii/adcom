@@ -8,34 +8,44 @@ import DivisionSection from './components/DivisionSection';
 import ProjectsSection from './components/ProjectsSection';
 import ProjectDetailPage from './pages/ProjectDetailPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import BlogSection from './components/BlogSection';
+import PostDetailPage from './pages/BlogDetailPage'; 
+import Gallery from './components/galerry';
+import FAQSection from './components/FaqSection';
+import Footer from './components/Footer';
+import StrukturOrganisasiPage from './pages/StrukturOrganisasiPage'; // <-- Pastikan ini diimpor
+import ScrollToHashElement from './utils/ScrollToHashElement'; // ← import dulu
+
 
 function App() {
   return (
-  
-    <>
-     <BrowserRouter>
+    <BrowserRouter>
+      <ScrollToHashElement />
       <Navbar />
       <main>
-        <Routes>
-          <Route path="/" element={
-            <>
-              <Hero />
-              <BenefitsSection />
-              <AboutSection />
-              <MasteringTools />
-              <DivisionSection />
-              <ProjectsSection />
-            </>
-          } />
-
-          {/* 2. Tambahkan Rute Baru untuk Detail Proyek */}
-          <Route path="/projects/:slug" element={<ProjectDetailPage />} />
-          
-        </Routes>
+        <div>
+          <Routes>
+            <Route path="/" element={
+              <>
+                <Hero />
+                <BenefitsSection />
+                <AboutSection />
+                <MasteringTools />
+                <DivisionSection />
+                <ProjectsSection />
+                <BlogSection />
+                <Gallery />
+                <FAQSection />
+              </>
+            } />
+            <Route path="/projects/:slug" element={<ProjectDetailPage />} />
+            <Route path="/posts/:slug" element={<PostDetailPage />} />
+            <Route path="/struktur-organisasi" element={<StrukturOrganisasiPage />} />
+          </Routes>
+        </div>
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </BrowserRouter>
-    </>
   );
 }
 

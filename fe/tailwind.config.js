@@ -1,4 +1,3 @@
- @type {import('tailwindcss').Config}
 export default {
   content: [
     "./index.html",
@@ -7,22 +6,20 @@ export default {
   theme: {
     extend: {
       keyframes: {
-        scrollLeft: {
-          '0%': { transform: 'translateX(0%)' },
-          '100%': { transform: 'translateX(-50%)' },
+        moveLeft: {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(-100%)' },
         },
-        scrollRight: {
-          '0%': { transform: 'translateX(-50%)' },
-          '100%': { transform: 'translateX(0%)' },
+        moveRight: {
+          '0%': { transform: 'translateX(-100%)' },
+          '100%': { transform: 'translateX(100%)' },
         },
       },
       animation: {
-        'scroll-left': 'scrollLeft 20s linear infinite',
-        'scroll-right': 'scrollRight 20s linear infinite',
+        'move-left': 'moveLeft 20s linear infinite',
+        'move-right': 'moveRight 20s linear infinite',
       },
     },
   },
-  plugins: [
-     require('@tailwindcss/typography')
-  ],
+  plugins: [],
 }

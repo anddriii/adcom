@@ -1,6 +1,6 @@
 // src/components/ProjectCard.jsx
 import React from 'react';
-import { Link } from 'react-router-dom'; // <-- 1. Import Link
+import { Link } from 'react-router-dom'; 
 
 // Tambahkan prop 'slug'
 const ProjectCard = ({ imageUrl, title, category, slug }) => {

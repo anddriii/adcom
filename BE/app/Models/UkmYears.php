@@ -10,5 +10,9 @@ class UkmYears extends Model
     use HasFactory;
 
     protected $fillable = ['year'];
+    public function structures()
+    {
+        return $this->hasMany(Structure::class);
+    }
 }
 

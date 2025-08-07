@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import MasteringTools from './components/MasteringTools';
+import AboutSection from './components/AboutSection';
+import BenefitsSection from './components/BenefitsSection';
+import DivisionSection from './components/DivisionSection';
+import ProjectsSection from './components/ProjectsSection';
+import ProjectDetailPage from './pages/ProjectDetailPage';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import BlogSection from './components/BlogSection';
+import PostDetailPage from './pages/BlogDetailPage'; 
+import Gallery from './components/galerry';
+import FAQSection from './components/FaqSection';
+import Footer from './components/Footer';
+import StrukturOrganisasiPage from './pages/StrukturOrganisasiPage'; // <-- Pastikan ini diimpor
+import ScrollToHashElement from './utils/ScrollToHashElement'; // ← import dulu
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <BrowserRouter>
+      <ScrollToHashElement />
+      <Navbar />
+      <main>
+        <div>
+          <Routes>
+            <Route path="/" element={
+              <>
+                <Hero />
+                <BenefitsSection />
+                <AboutSection />
+                <MasteringTools />
+                <DivisionSection />
+                <ProjectsSection />
+                <BlogSection />
+                <Gallery />
+                <FAQSection />
+              </>
+            } />
+            <Route path="/projects/:slug" element={<ProjectDetailPage />} />
+            <Route path="/posts/:slug" element={<PostDetailPage />} />
+            <Route path="/struktur-organisasi" element={<StrukturOrganisasiPage />} />
+          </Routes>
+        </div>
+      </main>
+      <Footer />
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

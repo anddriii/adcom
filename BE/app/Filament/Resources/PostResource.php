@@ -17,6 +17,8 @@ use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
 
 class PostResource extends Resource
 {
@@ -63,7 +65,12 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('title')->searchable(),
+                TextColumn::make('slug'),
+                TextColumn::make('author.name')->label('Penulis'),
+                TextColumn::make('tags.name')->label('Tags')->limitList(2),
+                ImageColumn::make('image')->label('Gambar'),
+                TextColumn::make('created_at')->dateTime()->label('Dibuat'),
             ])
             ->filters([
                 //

@@ -15,4 +15,8 @@ class Project extends Model
     {
         return $this->hasMany(ProjectPhotos::class);
     }
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'project_tags');
+    }
 }

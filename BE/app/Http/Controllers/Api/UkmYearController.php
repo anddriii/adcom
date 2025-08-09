@@ -11,7 +11,7 @@ class UkmYearController extends Controller
     public function index()
     {
         $years = UkmYears::orderBy('year', 'desc')
-            ->get(['id', 'year as tahun']);
+            ->get(['id', 'year as tahun', 'year as label']);
 
         return response()->json([
             'status' => 'success',

@@ -48,8 +48,8 @@ class PostResource extends Resource
                     ->required()
                     ->label('Konten'),
 
-                Select::make('author_id')
-                    ->relationship('author', 'name') // pastikan User model punya 'name'
+                TextInput::make('author_id')
+                    // ->relationship('author', 'name') // pastikan User model punya 'name'
                     ->required()
                     ->label('Penulis'),
 
@@ -67,7 +67,7 @@ class PostResource extends Resource
             ->columns([
                 TextColumn::make('title')->searchable(),
                 TextColumn::make('slug'),
-                TextColumn::make('author.name')->label('Penulis'),
+                TextColumn::make('author_id')->label('Penulis'),
                 TextColumn::make('tags.name')->label('Tags')->limitList(2),
                 ImageColumn::make('image')->label('Gambar'),
                 TextColumn::make('created_at')->dateTime()->label('Dibuat'),

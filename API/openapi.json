@@ -36,6 +36,10 @@
                                                     "type": "integer",
                                                     "description": "ID untuk periode"
                                                 },
+                                                "label":{
+                                                    "type":"integer",
+                                                    "description": "Label untuk tahun periode"
+                                                },          
                                                 "tahun": {
                                                     "type": "integer",
                                                     "description": "Tahun periode yang tersedia"
@@ -304,6 +308,75 @@
                     }
                 }
             }
+        },
+        "/galleries":{
+            "get": {
+                "tags": ["Galleries"],
+                "summary": "Get All Galleries",
+                "operationId": "getAllGaleries",
+                "responses": {
+                    "200":{
+                        "description": "Successful",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "type":"object",
+                                    "properties": {
+                                        "status":{
+                                            "type":"string",
+                                            "example": "succes"
+                                        },
+                                        "data":{
+                                            "type":"array",
+                                            "items":{
+                                                "$ref": "#/components/schemas/Galleries"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500":{
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/galleries/{slug}":{
+            "get": {
+                "tags": ["Galleries"],
+                "summary": "Get Galleries by slug",
+                "operationId": "getGalleriesSlug",
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "path",
+                        "required": true,
+                        "schema":{
+                            "type":"string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200":{
+                        "description": "Succes",
+                        "content": {
+                            "application/json":{
+                                "schema":{
+                                    "$ref": "#/components/schemas/GalleryDetail"
+                                }
+                            }
+                        }
+                    },
+                    "404":{
+                        "description": "gallery not found"
+                    },
+                    "500":{
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -423,6 +496,10 @@
                         "type": "string",
                         "description": "Slug untuk project"
                     },
+                    "category": {
+                        "type": "string",
+                        "description": "Kategori dari post / TAG"
+                    },
                     "thumbnail": {
                         "type": "string",
                         "format": "uri",
@@ -450,6 +527,10 @@
                         "type": "string",
                         "description": "Slug untuk project"
                     },
+                    "category": {
+                        "type": "string",
+                        "description": "Kategori dari post / TAG"
+                    },
                     "photos": {
                         "type": "array",
                         "items": {
@@ -475,6 +556,58 @@
                         "type": "string",
                         "format": "date-time",
                         "description": "Tanggal dan waktu pembuatan project"
+                    }
+                }
+            },
+            "Galleries":{
+                "type":"object",
+                "properties": {
+                    "id":{
+                        "type":"integer",
+                        "description": "ID untuk galleries"
+                    },
+                    "title": {
+                        "type": "string",
+                        "description": "Judul dari galleries"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "description": "Slug untuk galleries"
+                    },
+                    "thumbnail": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "URL gambar terkait galleries"
+                    }
+                }
+            },
+            "GalleryDetail":{
+                "type":"object",
+                "properties": {
+                    "id":{
+                        "type":"integer",
+                        "description": "ID untuk gallery"
+                    },
+                    "title": {
+                        "type": "string",
+                        "description": "Judul dari gallery"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "description": "Slug untuk gallery"
+                    },
+                    "description":{
+                        "type":"string",
+                        "description": "description untuk gallery"
+                    },
+                    "image": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "URL gambar terkait gallery"
+                    },
+                    "eventDate":{
+                        "type":"string",
+                        "format": "date"
                     }
                 }
             }

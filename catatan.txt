@@ -1,4 +1,4 @@
-1 project dikasih tag/kategori
+1 project dikasih tag/kategori || done
 
-2. di get all years tambah field label
+2. di get all years tambah field label || done
 3. bikin api baru untuk menampilkan seluruh anggota

@@ -22,7 +22,7 @@ class PostFactory extends Factory
             'slug' => Str::slug($this->faker->sentence),
             'content' => $this->faker->paragraph(10),
             'image' => 'default.jpg',
-            'author_id' => \App\Models\User::inRandomOrder()->first()->id,
+            'author_id' => $this->faker->name(),
             'created_at' => now(),
             'updated_at' => now(),
             ];

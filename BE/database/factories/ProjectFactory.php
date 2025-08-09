@@ -23,6 +23,7 @@ class ProjectFactory extends Factory
             'description' => fake()->paragraph,
             'repo_url' => 'https://github.com/example/repo',
             'thumbnail' => 'project.jpg',
+            'author_id' => $this->faker->name(),
             'created_at' => now(),
             'updated_at' => now(),
         ];

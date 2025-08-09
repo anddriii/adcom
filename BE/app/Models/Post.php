@@ -10,9 +10,10 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = ['title', 'slug', 'content', 'image', 'author_id'];
+
     public function tags()
     {
-        return $this->belongsToMany(Tag::class, 'post_tags');
+        return $this->belongsToMany(Tag::class, 'post_tags')->without('pivot');
     }
 
     //next uppdate

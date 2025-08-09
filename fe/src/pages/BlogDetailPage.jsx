@@ -19,20 +19,26 @@ const PostDetailPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const loadPostData = async () => {
-      setLoading(true);
-      try {
-        const result = await fetchPostBySlug(slug);
-        setPost(result.data);
-      } catch (err) {
-        setError("Artikel tidak ditemukan.");
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadPostData();
-  }, [slug]);
+useEffect(() => {
+  const loadPostData = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(`http://localhost:8000/api/v1/posts/${slug}`);
+      if (!response.ok) throw new Error("Artikel tidak ditemukan");
+      
+      const resJson = await response.json();
+      console.log(resJson); // cek di console
+      
+      setPost(resJson.data); // karena "data" berisi artikel
+    } catch (err) {
+      setError("Artikel tidak ditemukan.");
+    } finally {
+      setLoading(false);
+    }
+  };
+  loadPostData();
+}, [slug]);
+
 
   if (loading) return <div className="text-center py-40">Loading post...</div>;
   if (error) return <div className="text-center py-40 text-red-500 font-bold">{error}</div>;
@@ -57,7 +63,7 @@ const PostDetailPage = () => {
           <div className="flex items-center space-x-4">
             <MetaItem icon={"👤"} text={post.author} />
             <MetaItem icon={"📅"} text={new Date(post.createdAt).toLocaleDateString()} />
-            <MetaItem icon={"📁"} text={post.category} />
+            <MetaItem icon={"📁"} text={post.category.join(", ")} />
           </div>
         </header>
 
@@ -65,9 +71,10 @@ const PostDetailPage = () => {
         <img src={post.image} alt={post.title} className="w-full h-auto rounded-2xl shadow-lg mb-8" />
 
         {/* Konten Artikel */}
-        <article className="prose lg:prose-xl max-w-none">
-          <ReactMarkdown>{post.content}</ReactMarkdown>
+        <article className="prose lg:prose-xl max-w-none"
+          dangerouslySetInnerHTML={{ __html: post.content }}>
         </article>
+
 
         {/* Author Box (saat ini masih statis) */}
         <div className="mt-12 p-6 bg-gray-50 rounded-2xl flex items-center">

@@ -10,7 +10,7 @@ import ProjectDetailPage from './pages/ProjectDetailPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import BlogSection from './components/BlogSection';
 import PostDetailPage from './pages/BlogDetailPage'; 
-import Gallery from './components/galerry';
+import Gallery from './components/Galerry';
 import FAQSection from './components/FaqSection';
 import Footer from './components/Footer';
 import StrukturOrganisasiPage from './pages/StrukturOrganisasiPage'; // <-- Pastikan ini diimpor

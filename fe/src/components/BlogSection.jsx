@@ -16,12 +16,12 @@ const BlogSection = ({ showTitle = true }) => {
     const loadPostsData = async () => {
       try {
          // --- KODE UNTUK API ASLI (DIKOMENTARI DULU) ---
-        // const response = await fetch('http://localhost:8080/api/v1/posts');
-        // if (!response.ok) throw new Error('Gagal mengambil data blog');
-        // const result = await response.json();
-        // setAllPosts(result.data);
-        const result = await fetchPosts();
+        const response = await fetch('http://localhost:8000/api/v1/posts');
+        if (!response.ok) throw new Error('Gagal mengambil data blog');
+        const result = await response.json();
         setAllPosts(result.data);
+        // const result = await fetchPosts();
+        // setAllPosts(result.data);
       } catch (err) {
         setError(err.message);
       } finally {
